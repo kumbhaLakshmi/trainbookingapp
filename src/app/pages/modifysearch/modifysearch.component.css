@@ -1,0 +1,14 @@
+.alignCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    /* Full viewport height */
+    padding: 16px;
+}

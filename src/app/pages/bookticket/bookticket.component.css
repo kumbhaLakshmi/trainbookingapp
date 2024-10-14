@@ -1,0 +1,34 @@
+.mat-dialog-title-custom {
+    color: #1976d2; /* Example color */
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.dialog-content {
+    padding: 24px; /* Adjust padding as needed */
+}
+
+.full-width {
+    width: 100%; /* Make the container full-width */
+}
+
+.full-width .mat-form-field {
+    width: 100%; /* Ensure form fields take full width */
+}
+
+@media (max-width: 600px) {
+    .full-width .mat-form-field {
+        width: calc(100% - 24px); /* Adjust for smaller screens if needed */
+    }
+}
+
+    mat-h2, .mat-headline-6, .mat-typography .mat-h2, .mat-typography .mat-headline-6, .mat-typography h2 {
+        /* font-size: 20px; */
+        line-height: 0px !important;
+}
+
+
+/* .mat-mdc-dialog-content{
+    max-height: none;
+} */

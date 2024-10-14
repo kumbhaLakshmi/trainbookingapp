@@ -1,0 +1,63 @@
+<!-- <div class="container-fluid">
+  <div class="row gy-3">
+    <div class="col-sm-12 col-md-6">
+      <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="dashbordform">
+        <mat-form-field appearance="fill">
+          <mat-label>From Station</mat-label>
+          <mat-select formControlName="fromStation">
+            <mat-option *ngFor="let station of boardingStations" [value]="station">{{ station
+              }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>To Station</mat-label>
+          <mat-select formControlName="toStation">
+            <mat-option *ngFor="let station of departureStations" [value]="station">{{ station
+              }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Date of Travel</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateOfTravel">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <button mat-raised-button type="submit">Search</button>
+      </form>
+    </div>
+  </div> -->
+
+
+   <div class="container-fluid">
+    <div class="row gy-3">
+      <div class="col-sm-12 col-md-6">
+        <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="dashbordform">
+          <mat-form-field class="example-full-width">
+            <mat-label>From Station</mat-label>
+            <input type="text" placeholder="Pick one" matInput [formControl]="fromStationControl"
+              [matAutocomplete]="autoFrom">
+            <mat-autocomplete autoActiveFirstOption #autoFrom="matAutocomplete">
+              <mat-option *ngFor="let option of (filteredOptions | async)" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>To Station</mat-label>
+            <input type="text" placeholder="Pick one" matInput [formControl]="toStationControl"
+              [matAutocomplete]="autoTo">
+            <mat-autocomplete autoActiveFirstOption #autoTo="matAutocomplete">
+              <mat-option *ngFor="let option of (filteredOptionsTo | async)" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <button mat-raised-button type="submit">Search</button>
+        </form>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <img src="./../../../assets/train.jpg" alt="train" class="imagescc" />
+      </div>
+    </div>
+  </div>
+  

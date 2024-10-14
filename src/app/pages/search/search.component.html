@@ -1,0 +1,138 @@
+<div class="container-fluid">
+  <div class="row ">
+    <div class="col-12 d-flex justify-content-between pt-4" style="color: black">
+      <div style="width: 100%;padding-left: 30px;">
+        <h2>{{fromStation.toUpperCase()}} To {{toStation.toUpperCase()}}</h2>
+      </div>
+      <div class="modifysearch d-flex align-items-center justify-content-center">
+        <div (click)="openDialog()">
+          <mat-icon class="material-icons-outlined" *ngIf="!(isSmallScreen | async)">edit</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="isSmallScreen | async">
+    <app-modifysearch (sendDataEvent)="receiveData($event)"></app-modifysearch>
+  </div>
+  <div class="container">
+    <div class="row ">
+      <div *ngFor="let train of _stationSearchResults; let i = index" class="col-12   journerMainType"
+        id="journerMainType-{{i}}">
+        <!-- {{train.journeyClasses | async }} -->
+        <div class="my-3 d-flex align-items-center justify-content-start flex-column"
+          style="border-radius: 15px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+          <div class="d-flex justify-content-between align-items-center radiustop resultheader  radius"
+            style="background-color: #f5f5f5;padding-left: 40px;">
+            <div>
+              <h4 class="trainNameInCard">{{train.trainName?.toUpperCase()}} ({{train.trainId}})</h4>
+            </div>
+          </div>
+          <div class="container-fluid" style="margin-top: 5px;">
+            <div class="row">
+              <div class="col-4 d-flex flex-column flex-md-row  gap-0 gap-md-3 justify-content-md-center">
+                <!-- <div class=" d-flex justify-content-between align-items-center changeColumn flex-sm-column"> -->
+                <div>
+                  <h4>{{train.boardingTime}}</h4>
+                </div>
+                <div>
+                  <h4>{{train.boardingStation}}</h4>
+                </div>
+                <div>
+                  <h4>{{train.boardingDay}}</h4>
+                </div>
+                <!-- </div> -->
+                <!-- <div> -->
+                <!-- <h4>{{result.boardingTime}} <span class="boardingStyle">{{result.boardingStation}}</span>
+                  <span class="boardingDay">{{result.boardingDay}}</span>
+                </h4> -->
+                <!-- </div> -->
+              </div>
+              <div class="col-4 col-md-2 d-flex flex-column align-items-center justify-content-center flex-md-row justify-content-md-center
+                  align-items-md-start
+              ">
+                <!-- <div> -->
+                <h4>{{train.totalJourneyTime}}</h4>
+                <!-- </div> -->
+              </div>
+              <div class="col-4  d-flex flex-column  flex-md-row gap-0 gap-md-3 justify-content-md-center">
+                <!-- <div class="d-flex justify-content-between align-items-center changeColumn flex-sm-column"> -->
+                <div>
+                  <h4>{{train.departureTime}}</h4>
+                </div>
+                <div>
+                  <h4>{{train.departureStation}}</h4>
+                </div>
+                <div>
+                  <h4>{{train.departureDay}}</h4>
+                </div>
+                <!-- </div> -->
+                <!-- <div>
+                  <h4>{{result.boardingTime}} <span class="boardingStyle">{{result.boardingStation}}</span>
+                    <span class="boardingDay">{{result.boardingDay}}</span>
+                  </h4>
+                </div>
+              </div> -->
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+            <div class="container-fluid" style="margin-block: 7px;">
+              <div class="row">
+                <div class="col-10">
+                  <div class="d-flex align-items-center justify-content-center gap-1 gap-md-2 flex-row radiusbottom"
+                    style="overflow-x: auto; overflow-y: auto;">
+                    <!-- {{train |json}} -->
+                    <div *ngFor="let journeyClass of train.journeyClasses; let j = index" class="journeytype px-3"
+                      (click)="selectJourneyClass(i,journeyClass.id+i+j,j+train.trainId, train.trainId, journeyClass,train,journeyClass.id)"
+                      [ngClass]="{'journeyClass':changeColour===journeyClass.id}" style="border-radius: 8px;">
+                      <div>
+                        <h5>{{journeyClass.tierName}}</h5>
+                      </div>
+                      <div *ngIf="journeyClass.status"
+                        class="d-flex justify-content-between  align-items-center  text-success ">
+                        <h5>seats available <span class="spanStyle">
+                            {{journeyClass.noOfSeats}}
+                          </span></h5>
+                        <!-- <h5>{{journeyClass.ticketCost}}</h5> -->
+                      </div>
+                      <div *ngIf="!(journeyClass.status)">
+                        <h5 class="text-danger"> Not available</h5>
+                      </div>
+                      <!-- <div>
+                    <h5>{{journeyClass.ticketCost}}</h5>
+                  </div> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-start">
+                  <!-- <button mat-raised-button id="bookBtn{{train.trainId}}" color="primary"
+                    *ngIf="toolTip; else noTooltip" #tooltip="matTooltip"
+                    matTooltip="please select the journeyClass before booking" [matTooltipPosition]="'after'"
+                    [matTooltipHideDelay]="100">
+                    Book Now  
+                  </button>
+                  <ng-template #noTooltip>
+                    <button mat-raised-button id="bookBtn{{train.trainId}}"
+                      (click)="openDialogBookTicket(train, selectedJourneyClass)" color="primary">
+                      Book Now
+                    </button>
+                  </ng-template> -->
+                  <button mat-raised-button [disabled]="(buttonStates$ | async)?.[train.trainId]"
+                    id="(trainState$ | async)?.[train.trainId]"
+                    (click)="openDialogBookTicket(train, selectedJourneyClass)"
+                    [ngClass]="{'otherButton1':train.trainId===id && trainButton}"
+                    >
+                    <!-- " [ngClass]="{'otherButton1':trainButton, 'trainButton1': !trainButton}"
+                    " -->
+                    Book Now
+                     <!-- {{(buttonStates$ | async)?.[train.trainId]}} -->
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- [ngClass]="{'green-button': index1 === i, 'otherColour': index1 != i}" -->

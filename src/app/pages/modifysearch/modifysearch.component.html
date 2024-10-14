@@ -1,0 +1,56 @@
+<!-- <p>modifysearch works!</p> -->
+<!-- <div class="container-fluid"> -->
+<div class="form-container">
+    <form [formGroup]="modifyFields" (ngSubmit)="onSubmit()">
+        <div class="row p-2 gy-3">
+            <div class="col-sm-12 col-md-3 alignCenter">
+                <!-- <mat-form-field appearance="fill">
+                    <mat-label>From Station</mat-label>
+                    <mat-select formControlName="fromStation">
+                        <mat-option *ngFor="let result of boardingStations" [value]="result">{{ result }}</mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+                <mat-form-field class="example-full-width">
+                    <mat-label>From Station</mat-label>
+                    <input type="text" placeholder="Pick one" matInput [formControl]="formStationControl"
+                        [matAutocomplete]="autoFrom">
+                    <mat-autocomplete autoActiveFirstOption #autoFrom="matAutocomplete">
+                        <mat-option *ngFor="let option of (modifyFilteredOptions | async)" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-3 alignCenter">
+                <!-- <mat-form-field appearance="fill">
+                    <mat-label>to Station</mat-label>
+                    <mat-select formControlName="toStationControl">
+                        <mat-option *ngFor="let result of departureStations" [value]="result">{{ result }}</mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+                <mat-form-field class="example-full-width">
+                    <mat-label>to Station</mat-label>
+                    <input type="text" placeholder="Pick one" matInput [formControl]="toStationControl"
+                        [matAutocomplete]="autoTo">
+                    <mat-autocomplete autoActiveFirstOption #autoTo="matAutocomplete">
+                        <mat-option *ngFor="let option of (modifyFilterdOptionsTo | async)" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-3 alignCenter">
+                <!-- <input type="text" /> -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Date of Travel</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dateOfTravel">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-3 d-flex justify-content-center">
+                <button mat-raised-button type="submit" color="warn">modify search</button>
+            </div>
+        </div>
+    </form>
+</div>

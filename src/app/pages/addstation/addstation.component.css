@@ -1,0 +1,24 @@
+.booking-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .success-snackbar {
+  --mdc-snackbar-container-color: green !important;
+  --mat-mdc-snack-bar-button-color: white;
+} */
+/* .success-snackbar { */
+
+
+/* ::ng-deep .mat-mdc-simple-snack-bar{
+background-color: green !important;
+  }  */
+
+::ng-deep .mat-mdc-snack-bar-container .mdc-snackbar__surface {
+
+  background-color: green !important;
+
+}

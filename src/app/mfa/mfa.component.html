@@ -1,0 +1,24 @@
+<div class="mx-auto px-auto py-auto my-auto  justify-content-between align-items-center"
+  style="width: 500px;height: 90vh;">
+  <div>
+    <h2>MFA Setup</h2>
+  </div>
+  <div>
+    <input type="text" placeholder="Enter username" [(ngModel)]="username">
+    <button (click)="generateQR()">Generate QR Code</button>
+  </div>
+  <div *ngIf="qrCodeImage">
+    <p>Scan this QR code with your Authenticator App:</p>
+    <img [src]="qrCodeImage" alt="QR Code">
+  </div>
+  <div *ngIf="qrCodeUrl">
+    <input type="number" placeholder="Enter code from app" [(ngModel)]="code">
+    <button (click)="verifyCode()">Verify Code</button>
+  </div>
+  <div>
+    <p>{{ message }}</p>
+  </div>
+  <!-- <div *ngIf="invalid">
+    <h2 style="color: red;">please provide correct code</h2>
+  </div> -->
+</div>

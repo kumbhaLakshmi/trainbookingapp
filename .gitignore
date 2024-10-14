@@ -40,3 +40,24 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+
+# Dependency directories
+/node_modules
+
+# Build outputs
+/dist
+/out-tsc
+
+# IDE and OS files
+.idea/
+.vscode/
+*.log
+*.tmp
+
+# Optional Angular files
+/src/environments/environment.prod.ts
+
+# Others
+coverage/
+*.tsbuildinfo

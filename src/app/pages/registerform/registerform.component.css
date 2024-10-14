@@ -1,0 +1,36 @@
+.example-stepper {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+
+  .example-stepper {
+    width: 100%;
+    max-width: 800px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stepper-form {
+    width: 100%;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  @media (max-width: 767px) {
+    .example-stepper {
+      padding: 10px;
+    }
+  }
+  

@@ -1,0 +1,118 @@
+<div class="d-flex align-items-center justify-content-center" style="width: 100%; min-height: 90vh;
+   /* background-image: url('./../../../assets/addstation.jpg'); */
+    background-size: cover; background-position: center;">
+  <form [formGroup]="formFields" (ngSubmit)="onSubmit()" class="booking-form">
+    <div class="container-fluid py-4" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;max-width: 50%;">
+      <div class="row gy-3">
+        <div class="col-md-4 d-flex justify-content-between align-items-center">
+          <mat-form-field appearance="outline">
+            <mat-label>Train Name</mat-label>
+            <input matInput formControlName="trainname" placeholder="Enter train name" class="custom-mat-input ">
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 d-flex justify-content-between align-items-center">
+          <mat-form-field appearance="outline">
+            <mat-label>Train Number</mat-label>
+            <input matInput type="number" formControlName="trainnumber" placeholder="Enter train number"
+              class="custom-mat-input">
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 d-flex justify-content-between align-items-center">
+          <mat-form-field appearance="outline" class="full-width custom-mat-form-field">
+            <mat-label>Total Journey Hours</mat-label>
+            <input matInput formControlName="totaljourneytime" placeholder="Enter total journey hours"
+              class="custom-mat-input">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 d-flex justify-content-between align-items-center">
+          <mat-form-field appearance="outline" class="full-width custom-mat-form-field">
+            <mat-label>Boarding Station</mat-label>
+            <input matInput formControlName="boardingstation" placeholder="Enter boarding station"
+              class="custom-mat-input">
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 d-flex justify-content-between align-items-center">
+          <mat-form-field appearance="outline" class="full-width custom-mat-form-field">
+            <mat-label>Choose a Date</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="boardingday" placeholder="Choose boarding date"
+              class="custom-mat-input">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 d-flex justify-content-between align-items-center">
+          <mat-form-field appearance="outline" class="full-width custom-mat-form-field">
+            <mat-label>Boarding Time</mat-label>
+            <input matInput formControlName="boardingtime" placeholder="Enter boarding time" class="custom-mat-input">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 d-flex justify-content-between align-items-center">
+          <mat-form-field appearance="outline" class="full-width custom-mat-form-field ">
+            <mat-label>Departure Station</mat-label>
+            <input matInput formControlName="departurestation" placeholder="Enter departure station"
+              class="custom-mat-input">
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 d-flex justify-content-between align-items-center">
+          <mat-form-field appearance="outline" class="full-width custom-mat-form-field">
+            <mat-label>Choose a Date</mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="departureday" placeholder="Choose departure date"
+              class="custom-mat-input">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 d-flex justify-content-between align-items-center">
+          <mat-form-field appearance="outline" class="full-width custom-mat-form-field">
+            <mat-label>Departure Time</mat-label>
+            <input matInput formControlName="departuretime" placeholder="Enter departure time" class="custom-mat-input">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- <div class="col-12 col-md-6"> -->
+          <div [formGroup]="form" *ngFor="let tier of tiers; let i = index" class="col-12 col-md-6">
+            <div>
+              <mat-radio-group aria-label="Select an option" (change)="radioButtonChange(tier)">
+                <mat-radio-button labelPosition="before" [checked]="tier.status" [value]="tier.status">{{tier.tierName}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class="col-12" *ngIf="tier.status">z
+              <mat-form-field class="example-full-width">
+                <mat-label>Seats Available</mat-label>
+                <input type="number" matInput [formControlName]="tier.id.toString()" placeholder="no of seats">
+                <mat-error *ngIf="form.get(tier.id.toString())?.hasError('required')">
+                  Seats Available is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          
+
+        <!-- </div> -->
+      </div>
+
+
+      <div class="row">
+        <div class="col-12 d-flex align-items-center justify-content-center">
+          <button mat-raised-button color="primary" type="submit">Add Station</button>
+        </div>
+        <!-- <button (click)="show()">click</button> -->
+      </div>
+
+
+
+    </div>
+
+
+
+
+
+  </form>
+</div>

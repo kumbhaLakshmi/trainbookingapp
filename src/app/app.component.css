@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+
+.sidenav-container {
+  /* height: 100%; */
+  /* margin-top: 4px; */
+}
+
+.mat-toolbar {
+  width: 100%;
+}
+
+mat-sidenav {
+  width: 200px;
+}
+
+.mat-drawer-content {
+  overflow: hidden;
+}
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+  justify-content: left;
+  /* text-align: center; */
+
+}
+
+.routerLinks {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  /* padding-inline: 15px; */
+  /* padding-inline: 26vw */
+}
+
+
+.navcolour {
+  color: white;
+  text-decoration: none;
+}

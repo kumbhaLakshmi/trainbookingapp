@@ -1,0 +1,123 @@
+<div *ngIf="!change else elseBlock" class="d-flex align-items-center justify-content-center"
+  style="width: 100%; height: 90vh;">
+  <mat-stepper class="example-stepper" [orientation]="(stepperOrientation | async)!">
+    <mat-step [stepControl]="firstFormGroup" label="Fill out your register details"
+      errorMessage="Register details are required">
+      <form [formGroup]="firstFormGroup" class="stepper-form">
+        <div class="container">
+          <div class="row gx-2 gy-2">
+            <div class="col-sm-12 col-md-6">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Enter email" formControlName="emailCtrl" required>
+                <mat-error *ngIf="firstFormGroup.controls['emailCtrl'].errors?.['pattern']">Please enter a valid email
+                  address</mat-error>
+                <mat-error *ngIf="firstFormGroup.controls['emailCtrl'].errors?.['required']">Email is
+                  <strong>required</strong></mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" placeholder="Enter password" formControlName="passwordCtrl" required>
+                <mat-error *ngIf="firstFormGroup.controls['passwordCtrl'].errors?.['required']">Password is
+                  <strong>required</strong></mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="button-group">
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Fill out your personal details"
+      errorMessage="Personal details are required.">
+      <form [formGroup]="secondFormGroup" class="stepper-form">
+        <div class="container">
+          <div class="row gx-2 gy-2">
+            <div class="col-sm-12 col-md-6">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Last name, First name" formControlName="nameCtrl" required>
+                <mat-error *ngIf="secondFormGroup.controls['nameCtrl'].errors?.['pattern']">Please enter a valid
+                  name</mat-error>
+                <mat-error *ngIf="secondFormGroup.controls['nameCtrl'].errors?.['required']">Name is
+                  required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Phone number</mat-label>
+                <input matInput formControlName="mobileCtrl" placeholder="Ex. 12345678" required>
+                <mat-error *ngIf="secondFormGroup.controls['mobileCtrl'].errors?.['pattern']">Please provide valid
+                  mobile number</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="button-group">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" label="Fill out Address details">
+      <form [formGroup]="thirdFormGroup" class="stepper-form">
+        <div class="container">
+          <div class="row gx-2 gy-2">
+            <div class="col-sm-12 col-md-6">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Hometown</mat-label>
+                <input matInput formControlName="homeTownCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                <mat-error *ngIf="thirdFormGroup.controls['homeTownCtrl'].errors?.['pattern']">Please enter valid
+                  hometown</mat-error>
+                <mat-error *ngIf="thirdFormGroup.controls['homeTownCtrl'].errors?.['required']">Hometown is
+                  required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>State</mat-label>
+                <input matInput placeholder="State name" formControlName="stateCtrl" required>
+                <mat-error *ngIf="thirdFormGroup.controls['stateCtrl'].errors?.['pattern']">Please enter valid
+                  state</mat-error>
+                <mat-error *ngIf="thirdFormGroup.controls['stateCtrl'].errors?.['required']">State is
+                  required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="button-group">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div class="button-group">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="formSubmit()" type="submit">Submit</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>
+
+<ng-template #elseBlock>
+  <div>enter the opt</div>
+  <mat-form-field class="example-form-field">
+    <mat-label>Clearable input</mat-label>
+    <input matInput type="text" [(ngModel)]="otp">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="verifyOtp()">
+    Verify Otp
+  </button>
+</ng-template>
